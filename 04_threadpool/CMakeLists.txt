@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
+
+PROJECT(ThreadPool)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+SET(CMAKE_CXX_STANDARD 11)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic" )
+
+FIND_PACKAGE(Threads REQUIRED)
+
+ADD_EXECUTABLE(threadpool
+    main.cc
+    server.cc
+    blockQue.cc
+)
+
+TARGET_LINK_LIBRARIES(threadpool ${CMAKE_THREAD_LIBS_INIT})

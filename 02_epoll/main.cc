@@ -1,3 +1,8 @@
+/*
+ * @Author: Shiyu Yi
+ * @Github: https://github.com/chanchann
+ */
+
 #include <iostream>
 #include "server.h"
 

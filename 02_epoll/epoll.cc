@@ -1,5 +1,9 @@
-#include "epoll.h"
+/*
+ * @Author: Shiyu Yi
+ * @Github: https://github.com/chanchann
+ */
 
+#include "epoll.h"
 
 Epoll::Epoll(int maxEvents) : 
                 _epollFd(epoll_create1(0)),

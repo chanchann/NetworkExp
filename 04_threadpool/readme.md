@@ -1,3 +1,13 @@
+## Start thread with member function
+
+_threadList.push_back(std::thread(&Server::thrdRun, this));
+
+https://stackoverflow.com/questions/10673585/start-thread-with-member-function
+
+
+
+## 
+
 https://github.com/mtrebi/thread-pool/blob/master/include/ThreadPool.h
 
 https://github.com/vit-vit/CTPL

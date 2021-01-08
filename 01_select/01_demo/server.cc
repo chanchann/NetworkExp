@@ -1,3 +1,8 @@
+/*
+ * @Author: Shiyu Yi
+ * @Github: https://github.com/chanchann
+ */
+
 #include "server.h"
 
 Server::Server(int port, int backlog) :

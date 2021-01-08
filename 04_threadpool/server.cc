@@ -33,7 +33,7 @@ bool Server::InitSocket()  {
     return true;
 }
 
-int Server::AcceptConnection() {
+void Server::AcceptConnection() {
     struct sockaddr_in client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
     int fd = accept(_listenfd, 
@@ -42,8 +42,9 @@ int Server::AcceptConnection() {
     if(fd < 0) {
         std::cout << "Accept Error" << std::endl;
         exit(1);  
-    } 
-    return fd;
+    } else {
+        _blockQue->push(fd);
+    }
 }
 
 void Server::LoopEcho(int fd) {
@@ -74,7 +75,19 @@ void Server::LoopEcho(int fd) {
     }
 }
 
-Server::Server(int port) : _port(port) {
+void Server::thrdRun() {
+    while(true) {
+        int fd = _blockQue->pop();
+        std::cout << "get fd in thread, fd == " << fd 
+            <<  " tid == " << std::this_thread::get_id() << std::endl; 
+        LoopEcho(fd);
+    } 
+}
+
+Server::Server(int port, int thrdNum) : 
+        _port(port),
+        _threadList(thrdNum),
+        _blockQue(make_unique<BlockQue>()) {
     if(!InitSocket()) {
         std::cout << " Init socket fails" << std::endl;
         return;
@@ -86,9 +99,13 @@ Server::~Server() {
 }
 
 void Server::run() {
+    std::cout << "Running ..." << std::endl;
+    for(size_t i = 0; i < _threadList.size(); i++) {
+        _threadList[i] = std::thread(&Server::thrdRun, this);
+    }
+    std::for_each(_threadList.begin(), _threadList.end(),
+                    std::mem_fn(&std::thread::detach));
     while(true) {
-        int fd = AcceptConnection();
-        std::thread t(LoopEcho, fd);
-        t.detach();
+        AcceptConnection();
     }
 }

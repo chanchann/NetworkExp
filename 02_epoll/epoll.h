@@ -1,3 +1,8 @@
+/*
+ * @Author: Shiyu Yi
+ * @Github: https://github.com/chanchann
+ */
+
 #ifndef EPOLL_H
 #define EPOLL_H
 #include <sys/epoll.h>
