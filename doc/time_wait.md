@@ -14,7 +14,7 @@ https://time.geekbang.org/column/article/125806
 
 TCP 四次挥手 -- 分析
 
-![tcp4](https://pic2.zhimg.com/80/v2-84aaaf4428e4c06962037c61efe163c9_1440w.jpg)
+![tcp4](https://static001.geekbang.org/resource/image/f3/e1/f34823ce42a49e4eadaf642a75d14de1.png)
 
 TIME_WAIT 停留持续时间是固定的，2MSL
 

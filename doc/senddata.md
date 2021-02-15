@@ -51,3 +51,12 @@ ssize_t read (int socketfd, void *buffer, size_t size)
 ```
 
 如果返回值为 0，表示 EOF（end-of-file），这在网络中表示对端发送了 FIN 包，要处理断连的情况；
+
+### 缓冲区实验
+
+[缓冲区实验](../src/senddata/)
+
+对于 send 来说，返回成功仅仅表示数据写到发送缓冲区成功，并不表示对端已经成功收到。
+
+对于 read 来说，需要循环读取数据，并且需要考虑 EOF 等异常条件。
+
