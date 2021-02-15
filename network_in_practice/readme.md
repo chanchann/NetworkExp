@@ -1,2 +1,0 @@
-* Docs:
-  * [timewait](./timewait.md)
